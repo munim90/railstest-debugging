@@ -1,4 +1,9 @@
 class Task < ApplicationRecord
+
+  #START: add_sizeable
+  include Sizeable
+  #END: add_sizeable
+  
   belongs_to :project
 
   def mark_completed(date = Time.current)
