@@ -23,16 +23,17 @@ RSpec.describe Project do
       expect(project).to be_done
     end
 
+    # #START: init_project
     it "properly handles a blank project" do
       expect(project.completed_velocity).to eq(0)
       expect(project.current_rate).to eq(0)
       expect(project.projected_days_remaining).to be_nan
       expect(project).not_to be_on_schedule
     end
+    # #END:  init_project
   end
 
   describe "estimates" do
-
     let(:project) { Project.new }
     let(:newly_done) { Task.new(size: 3, completed_at: 1.day.ago) }
     let(:old_done) { Task.new(size: 2, completed_at: 6.months.ago) }
@@ -43,23 +44,23 @@ RSpec.describe Project do
       project.tasks = [newly_done, old_done, small_not_done, large_not_done]
     end
 
-    #START: new_size
+    ## START: matcher_chained
     it "can calculate total size" do
       expect(project).to be_of_size(10)
       expect(project).not_to be_of_size(5)
     end
-    #END: new_size
 
     it "can calculate remaining size" do
-      expect(project.remaining_size).to eq(5)
+      expect(project).to be_of_size(5).for_incomplete_tasks_only
     end
+    ## END: matcher_chained
 
     it "knows its velocity" do
       expect(project.completed_velocity).to eq(3)
     end
 
     it "knows its rate" do
-      expect(project.current_rate).to eq(1.0 / 7) 
+      expect(project.current_rate).to eq(1.0 / 7) # <label id="code.algebra" />
     end
 
     it "knows its projected days remaining" do

@@ -1,10 +1,11 @@
 require "rails_helper"
 
+# #START: shared
 RSpec.describe Task do
 
-  #START: new_example
   it_should_behave_like "sizeable"
-  #END: new_example
+
+  # #END:shared
 
   describe "initialization" do
     let(:task) { Task.new }
@@ -19,7 +20,7 @@ RSpec.describe Task do
     end
   end
 
-  ## START: vel_test
+
   describe "velocity" do
     let(:task) { Task.new(size: 3) }
 
@@ -40,5 +41,5 @@ RSpec.describe Task do
       expect(task.points_toward_velocity).to eq(0)
     end
   end
-  ## END:  vel_test
+
 end

@@ -1,10 +1,11 @@
+## START: size_methods
 class Project < ApplicationRecord
-
-  ## START: add_sizeable
   include Sizeable
-  ## END: add_sizeable
+
+  ## END: size_methods
 
   has_many :tasks, dependent: :destroy
+
   validates :name, presence: true
 
   def self.velocity_length_in_days
@@ -19,7 +20,7 @@ class Project < ApplicationRecord
     incomplete_tasks.empty?
   end
 
-  def total_size
+  def size
     tasks.sum(&:size)
   end
 
