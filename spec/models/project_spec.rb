@@ -5,7 +5,7 @@ RSpec.describe Project do
   it_should_behave_like "sizeable"
 
   describe "completion" do
-    #START:
+    ## START: with_basic_factories
     describe "without a task" do
       let(:project) { FactoryBot.build_stubbed(:project) }
       it "considers a project with no tasks to be done" do
@@ -33,19 +33,18 @@ RSpec.describe Project do
         expect(project).to be_done
       end
     end
-    #END: 
+    ## END: with_basic_factories
   end
 
-  #START: new_estimates
+  ## START: with_key_factories
   describe "estimates" do
     let(:project) { FactoryBot.build_stubbed(:project,
       tasks: [newly_done, old_done, small_not_done, large_not_done]) }
-    let(:newly_done) { FactoryBot.build_stubbed(:task,
-      size: 3, completed_at: 1.day.ago) }
-    let(:old_done) { FactoryBot.build_stubbed(:task,
-      size: 2, completed_at: 6.months.ago) }
-    let(:small_not_done) { FactoryBot.build_stubbed(:task, size: 1) }
-    let(:large_not_done) { FactoryBot.build_stubbed(:task, size: 4) }
+    let(:newly_done) { FactoryBot.build_stubbed(:task, :newly_complete) }
+    let(:old_done) { FactoryBot.build_stubbed(
+      :task, :long_complete, :small) }
+    let(:small_not_done) { FactoryBot.build_stubbed(:task, :small) }
+    let(:large_not_done) { FactoryBot.build_stubbed(:task, :large) }
 
     it "can calculate total size" do
       expect(project).to be_of_size(10)
@@ -53,9 +52,9 @@ RSpec.describe Project do
     end
 
     it "can calculate remaining size" do
-      expect(project).to be_of_size(5).for_incomplete_tasks_only
+      expect(project).to be_of_size(6).for_incomplete_tasks_only
     end
-    #END: new_estimates
+    ## END: with_key_factories
 
     it "knows its velocity" do
       expect(project.completed_velocity).to eq(3)
@@ -65,8 +64,8 @@ RSpec.describe Project do
       expect(project.current_rate).to eq(1.0 / 7) 
     end
 
-    it "knows its projected days remaining" do
-      expect(project.projected_days_remaining).to eq(35)
+    it "knows its projected time remaining" do
+      expect(project.projected_days_remaining).to eq(42)
     end
 
     it "knows if it is not on schedule" do
