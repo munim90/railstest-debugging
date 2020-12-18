@@ -13,7 +13,7 @@ RSpec.describe CreatesProject do
     end
   end
 
-  ## START: failure_test
+  #
 
   describe "failure cases" do
     it "fails when trying to save a project with no name" do
@@ -23,7 +23,7 @@ RSpec.describe CreatesProject do
     end
   end
 
-  ## END: failure_test
+  #
 
   describe "task string parsing" do
     let(:tasks) { creator.convert_string_to_tasks }
