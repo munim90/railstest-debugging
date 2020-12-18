@@ -1,7 +1,10 @@
 #START:P1
 FactoryBot.define do
     factory :task do
-      sequence(:title) { |n| "Task #{n}" }
+
+      sequence :title, 100 do |n| 
+        "Task #{n}" 
+      end
       size {"3"}
       completed_at {"nil"}
   
@@ -32,8 +35,14 @@ FactoryBot.define do
         completed_at { 6.months.ago }
       end
   
-      factory :trivial, class: Task, traits: %i[small later]
-      factory :panic, class: Task, traits: %i[large soon]
+      factory :trivial do
+        small
+        later
+      end
+      factory :panic do
+        large
+        soon
+      end
   
     end
   
