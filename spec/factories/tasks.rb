@@ -2,9 +2,7 @@
 FactoryBot.define do
     factory :task do
 
-      sequence :title, 100 do |n| 
-        "Task #{n}" 
-      end
+      sequence(:title) { |n| "Task #{n}" }
       size {"3"}
       completed_at {"nil"}
   
