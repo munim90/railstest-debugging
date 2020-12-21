@@ -4,6 +4,26 @@ RSpec.describe Project do
 
   it_should_behave_like "sizeable"
 
+  describe "stubs" do
+    
+    #START: first_stub
+    it "stubs an object" do
+      project = Project.new(name: "Project Greenlight")
+      allow(project).to receive(:name)
+      expect(project.name).to be_nil
+    end
+    #END: first_stub
+
+    #START: second_stub
+    it "stubs an object again" do
+      project = Project.new(name: "Project Greenlight")
+      allow(project).to receive(:name).and_return("Fred")
+      expect(project.name).to eq("Fred")
+    end
+    #END: second_stub
+
+  end
+
   describe "completion" do
     describe "without a task" do
       let(:project) { FactoryBot.build_stubbed(:project) }
@@ -75,15 +95,6 @@ RSpec.describe Project do
     end
   end
 
-  describe "stubs" do
-    
-    #START: first_stub
-    it "stubs an object" do
-      project = Project.new(name: "Project Greenlight")
-      allow(project).to receive(:name)
-      expect(project.name).to be_nil
-    end
-    #END: first_stub
-  end
+ 
 
 end
