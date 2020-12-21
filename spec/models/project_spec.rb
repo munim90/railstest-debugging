@@ -22,6 +22,14 @@ RSpec.describe Project do
     end
     #END: second_stub
 
+    #START: third_stub
+    it "stubs the class" do
+      allow(Project).to receive(:find).and_return(
+      Project.new(name: "Project Greenlight"))
+      project = Project.find(1)
+      expect(project.name).to eq("Project Greenlight")
+    end
+    #START: third_stub
   end
 
   describe "completion" do
