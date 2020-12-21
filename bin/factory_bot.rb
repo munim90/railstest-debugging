@@ -5,4 +5,5 @@ ENV["RAILS_ENV"] ||= "test"
         FactoryBot.lint(traits: true)
     ensure
         DatabaseCleaner.clean
+        FactoryBot.rewind_sequences
 end

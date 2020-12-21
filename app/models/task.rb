@@ -1,9 +1,5 @@
-## START: size_methods
-
 class Task < ApplicationRecord
   include Sizeable
-
-  ## END: size_methods
 
   belongs_to :project
 

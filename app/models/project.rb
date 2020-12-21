@@ -1,8 +1,5 @@
-## START: size_methods
 class Project < ApplicationRecord
   include Sizeable
-
-  ## END: size_methods
 
   has_many :tasks, dependent: :destroy
 

@@ -5,7 +5,6 @@ RSpec.describe Project do
   it_should_behave_like "sizeable"
 
   describe "completion" do
-    ## START: with_basic_factories
     describe "without a task" do
       let(:project) { FactoryBot.build_stubbed(:project) }
       it "considers a project with no tasks to be done" do
@@ -33,10 +32,8 @@ RSpec.describe Project do
         expect(project).to be_done
       end
     end
-    ## END: with_basic_factories
   end
 
-  ## START: with_key_factories
   describe "estimates" do
     let(:project) { FactoryBot.build_stubbed(:project,
       tasks: [newly_done, old_done, small_not_done, large_not_done]) }
@@ -54,7 +51,6 @@ RSpec.describe Project do
     it "can calculate remaining size" do
       expect(project).to be_of_size(6).for_incomplete_tasks_only
     end
-    ## END: with_key_factories
 
     it "knows its velocity" do
       expect(project.completed_velocity).to eq(3)
@@ -77,6 +73,17 @@ RSpec.describe Project do
       project.due_date = 6.months.from_now
       expect(project).to be_on_schedule
     end
+  end
+
+  describe "stubs" do
+    
+    #START: first_stub
+    it "stubs an object" do
+      project = Project.new(name: "Project Greenlight")
+      allow(project).to receive(:name)
+      expect(project.name).to be_nil
+    end
+    #END: first_stub
   end
 
 end

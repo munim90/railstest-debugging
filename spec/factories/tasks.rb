@@ -1,5 +1,6 @@
 #START:P1
 FactoryBot.define do
+
     factory :task do
 
       sequence(:title) { |n| "Task #{n}" }
@@ -37,6 +38,7 @@ FactoryBot.define do
         small
         later
       end
+
       factory :panic do
         large
         soon
@@ -44,6 +46,5 @@ FactoryBot.define do
   
     end
   
-  end
-  #END:P2
-  
+end
+  #END:P2 
