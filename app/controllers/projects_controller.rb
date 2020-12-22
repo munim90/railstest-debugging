@@ -1,4 +1,11 @@
 class ProjectsController < ApplicationController
+
+    #START: show
+    def show
+      @project = Project.find(params[:id])
+    end
+    #END: show
+
     def new
       @project = Project.new
     end
@@ -7,7 +14,6 @@ class ProjectsController < ApplicationController
       @projects = Project.all
     end
   
-    ## START: failure
     def create
       @workflow = CreatesProject.new(
         name: params[:project][:name],
@@ -20,6 +26,6 @@ class ProjectsController < ApplicationController
         render :new
       end
     end
-    ## END: failure
+
   end
   
