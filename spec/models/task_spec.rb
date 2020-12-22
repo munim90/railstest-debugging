@@ -4,7 +4,7 @@ RSpec.describe Task do
 
   it_should_behave_like "sizeable"
 
-    ##START: new_order
+    #
     describe "order", aggregate_failures: true do
       let(:project) { create(:project, name: "Project") }
       let!(:first) { project.tasks.create!(project_order: 1) }
@@ -19,38 +19,38 @@ RSpec.describe Task do
         expect(third).not_to be_first_in_project
         expect(third).to be_last_in_project
       end
-  
+      #START: up_and_down
       it "knows neighbors" do
         expect(second.previous_task).to eq(first)
         expect(second.next_task).to eq(third)
         expect(first.previous_task).to be_nil
         expect(third.next_task).to be_nil
       end
-  
+
       it "can move up" do
         second.move_up
         expect(first.reload.project_order).to eq(2)
         expect(second.reload.project_order).to eq(1)
       end
-  
+
       it "can move down" do
         second.move_down
         expect(third.reload.project_order).to eq(2)
         expect(second.reload.project_order).to eq(3)
       end
-  
+
       it "handles edge case moves up" do
         first.move_up
         expect(first.reload.project_order).to eq(1)
       end
-  
+
       it "handles edge case moves down" do
         third.move_down
         expect(third.reload.project_order).to eq(3)
       end
+      #END: up_and_down
     end
-    ##END: new_order
-
+    #
   describe "initialization" do
     let(:task) { Task.new }
 
