@@ -3,6 +3,18 @@ class Task < ApplicationRecord
 
   belongs_to :project
 
+  ##START: new_order_task
+  def first_in_project?
+    return false unless project
+    project.tasks.first == self
+  end
+
+  def last_in_project?
+    return false unless project
+    project.tasks.last == self
+  end
+  ##END: new_order_task
+
   def mark_completed(date = Time.current)
     self.completed_at = date
   end
