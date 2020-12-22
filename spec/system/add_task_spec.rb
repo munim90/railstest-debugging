@@ -7,6 +7,13 @@ RSpec.describe "adding a new task" do
     let!(:task_2) { create(
     :task, project: project, title: "Use Telescope", size: 1) }
 
+    #START: project_order
+    let!(:task_1) { create(
+    :task, project: project, title: "Search Sky", size: 1, project_order: 1) }
+    let!(:task_2) { create(
+    :task, project: project, title: "Use Telescope", size: 1, project_order: 2) }
+    #END: project_order
+
     it "can add and reorder a task" do
         visit(project_path(project))
         fill_in("Task", with: "Find UFOs")
@@ -22,7 +29,7 @@ RSpec.describe "adding a new task" do
         end
 
         expect(current_path).to eq(project_path(project))
-        
+
         within("#task_2") do
             expect(page).to have_selector(".name", text: "Find UFOs")
         end

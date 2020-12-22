@@ -4,40 +4,50 @@ RSpec.describe Project do
 
   it_should_behave_like "sizeable"
 
-  describe "stubs" do
+  #START: task_order
+  describe "task order" do
+
+    let(:project) { create(:project, name: "Project") }
     
-    #START: first_stub
+    it "makes 1 the order of the first task in an entry project" do
+      expect(project.next_task_order).to eq(1)
+    end
+
+    it "gives the order of the next task as one more than the highest" do
+      project.tasks.create(project_order: 1)
+      project.tasks.create(project_order: 3)
+      project.tasks.create(project_order: 2)
+      expect(project.next_task_order).to eq(4)
+    end
+  end
+  #END: task_order
+
+  describe "stubs" do
+
     it "stubs an object" do
       project = Project.new(name: "Project Greenlight")
       allow(project).to receive(:name)
       expect(project.name).to be_nil
     end
-    #END: first_stub
 
-    #START: second_stub
     it "stubs an object again" do
       project = Project.new(name: "Project Greenlight")
       allow(project).to receive(:name).and_return("Fred")
       expect(project.name).to eq("Fred")
     end
-    #END: second_stub
 
-    #START: third_stub
     it "stubs the class" do
       allow(Project).to receive(:find).and_return(
       Project.new(name: "Project Greenlight"))
       project = Project.find(1)
       expect(project.name).to eq("Project Greenlight")
     end
-    #END: third_stub
 
-    #START: fourth_stub
     it "mocks an object" do
       mock_project = Project.new(name: "Project Greenlight")
       expect(mock_project).to receive(:name).and_return("Fred")
       expect(mock_project.name).to eq("Fred")
     end
-    #END: fourth_stub
 
   end
 
