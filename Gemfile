@@ -49,6 +49,7 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
   gem "database_cleaner"
+  gem "capybara-screenshot"
 end
 
 group :development, :test do
