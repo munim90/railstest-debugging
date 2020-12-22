@@ -17,7 +17,7 @@ RSpec.describe Project do
       project.tasks.create(project_order: 1)
       project.tasks.create(project_order: 3)
       project.tasks.create(project_order: 2)
-      expect(project.next_task_order).to eq(4)
+      expect(project.next_task_order).to eq(3)
     end
   end
   #END: task_order
