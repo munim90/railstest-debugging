@@ -278,7 +278,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
-  capybara (>= 2.15)
+  capybara (>= 3.34.0)
   capybara-screenshot
   cucumber-rails
   database_cleaner
