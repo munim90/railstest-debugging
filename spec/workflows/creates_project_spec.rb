@@ -5,18 +5,6 @@ RSpec.describe CreatesProject do
   let(:creator) { CreatesProject.new(
     name: "Project Runway", task_string: task_string) }
 
-    #START: mocking_failure
-    describe "mocking a failure" do
-      it "fails when we say it fails" do
-        project = instance_spy(Project, save: false)
-        allow(Project).to receive(:new).and_return(project)
-        creator = CreatesProject.new(name: "Name", task_string: "Task")
-        creator.create
-        expect(creator).not_to be_a_success
-      end
-    end
-    #END: mocking_failure
-
   describe "initialization" do
     let(:task_string) { "" }
     it "creates a project given a name" do
@@ -25,6 +13,8 @@ RSpec.describe CreatesProject do
     end
   end
 
+  ## START: failure_test
+
   describe "failure cases" do
     it "fails when trying to save a project with no name" do
       creator = CreatesProject.new(name: "", task_string: "")
@@ -32,6 +22,20 @@ RSpec.describe CreatesProject do
       expect(creator).not_to be_a_success
     end
   end
+
+  ## END: failure_test
+
+  ## START: mock_failure
+  describe "mocking a failure" do
+    it "fails when we say it fails" do
+      project = instance_spy(Project, save: false)
+      allow(Project).to receive(:new).and_return(project)
+      creator = CreatesProject.new(name: "Name", task_string: "Task")
+      creator.create
+      expect(creator).not_to be_a_success
+    end
+  end
+  ## END: mock_failure
 
   describe "task string parsing" do
     let(:tasks) { creator.convert_string_to_tasks }

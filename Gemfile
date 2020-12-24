@@ -31,32 +31,28 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem "capybara"
+  gem "capybara-screenshot"
+  gem "database_cleaner"
+  gem "factory_bot_rails"
+  gem "pry-rails"
+  gem "pry-rescue"
+  gem "rspec-rails"
+  gem "rubocop"
+  gem "selenium-webdriver"
+  gem 'webdrivers'
+  gem 'cucumber-rails', require: false
+  gem "foreman"
 end
 
 group :development do
-  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
-  gem 'listen', '~> 3.2'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem "listen"
+  gem "spring"
+  gem "spring-commands-rspec"
+  gem "spring-watcher-listen"
+  gem "web-console"
+
   
-end
-
-group :test do
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 3.34.0'
-  gem 'selenium-webdriver'
-  # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
-  gem "database_cleaner"
-  gem "capybara-screenshot"
-end
-
-group :development, :test do
-  gem "rspec-rails"
-  gem 'factory_bot_rails'
-  gem 'cucumber-rails', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

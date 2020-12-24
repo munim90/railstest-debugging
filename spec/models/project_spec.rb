@@ -4,54 +4,8 @@ RSpec.describe Project do
 
   it_should_behave_like "sizeable"
 
-  #START: task_order
-  describe "task order" do
-
-    let(:project) { create(:project, name: "Project") }
-    
-    it "makes 1 the order of the first task in an entry project" do
-      expect(project.next_task_order).to eq(1)
-    end
-
-    it "gives the order of the next task as one more than the highest" do
-      project.tasks.create(project_order: 1)
-      project.tasks.create(project_order: 3)
-      project.tasks.create(project_order: 2)
-      expect(project.next_task_order).to eq(3)
-    end
-  end
-  #END: task_order
-
-  describe "stubs" do
-
-    it "stubs an object" do
-      project = Project.new(name: "Project Greenlight")
-      allow(project).to receive(:name)
-      expect(project.name).to be_nil
-    end
-
-    it "stubs an object again" do
-      project = Project.new(name: "Project Greenlight")
-      allow(project).to receive(:name).and_return("Fred")
-      expect(project.name).to eq("Fred")
-    end
-
-    it "stubs the class" do
-      allow(Project).to receive(:find).and_return(
-      Project.new(name: "Project Greenlight"))
-      project = Project.find(1)
-      expect(project.name).to eq("Project Greenlight")
-    end
-
-    it "mocks an object" do
-      mock_project = Project.new(name: "Project Greenlight")
-      expect(mock_project).to receive(:name).and_return("Fred")
-      expect(mock_project.name).to eq("Fred")
-    end
-
-  end
-
   describe "completion" do
+    ## START: with_basic_factories
     describe "without a task" do
       let(:project) { FactoryBot.build_stubbed(:project) }
       it "considers a project with no tasks to be done" do
@@ -79,8 +33,10 @@ RSpec.describe Project do
         expect(project).to be_done
       end
     end
+    ## END: with_basic_factories
   end
 
+  ## START: with_key_factories
   describe "estimates" do
     let(:project) { FactoryBot.build_stubbed(:project,
       tasks: [newly_done, old_done, small_not_done, large_not_done]) }
@@ -98,13 +54,14 @@ RSpec.describe Project do
     it "can calculate remaining size" do
       expect(project).to be_of_size(6).for_incomplete_tasks_only
     end
+    ## END: with_key_factories
 
     it "knows its velocity" do
       expect(project.completed_velocity).to eq(3)
     end
 
     it "knows its rate" do
-      expect(project.current_rate).to eq(1.0 / 7) 
+      expect(project.current_rate).to eq(1.0 / 7)
     end
 
     it "knows its projected time remaining" do
@@ -122,6 +79,56 @@ RSpec.describe Project do
     end
   end
 
- 
+  ## START: test_order
+  describe "task order" do
+    let(:project) { create(:project, name: "Project") }
+
+    it "makes 1 the order of the first task in an entry project" do
+      expect(project.next_task_order).to eq(1)
+    end
+
+    it "gives me the order of the next task as one more than the most" do
+      project.tasks.create(project_order: 3)
+      project.tasks.create(project_order: 2)
+      expect(project.next_task_order).to eq(4)
+    end
+  end
+  ## END: test_order
+
+  describe "stubs" do
+    ## START: stub_one
+    it "stubs an object" do
+      project = Project.new(name: "Project Greenlight")
+      allow(project).to receive(:name) # <label id="code.stub_one_stub" />
+      expect(project.name).to be_nil # <label id="code.stub_one_assert" />
+    end
+    ## END: stub_one
+
+    ## START: stub_two
+    it "stubs an object again" do
+      project = Project.new(name: "Project Greenlight")
+      allow(project).to receive(:name).and_return("Fred")
+      expect(project.name).to eq("Fred")
+    end
+    ## END: stub_two
+
+    ## START: stub_class
+    it "stubs the class" do
+      allow(Project).to receive(:find).and_return(
+        Project.new(name: "Project Greenlight"))
+      project = Project.find(1) # <label id="code.stub_class_stub" />
+      expect(project.name).to eq("Project Greenlight")
+    end
+    ## END: stub_class
+
+    ## START: mock_one
+    it "mocks an object" do
+      mock_project = Project.new(name: "Project Greenlight")
+      expect(mock_project).to receive(:name).and_return("Fred")
+      expect(mock_project.name).to eq("Fred")
+    end
+    ## END: mock_one
+
+  end
 
 end

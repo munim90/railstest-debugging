@@ -5,5 +5,6 @@ Rails.application.routes.draw do
       patch :down
     end
   end
+
   resources :projects
 end

@@ -1,31 +1,30 @@
 class ProjectsController < ApplicationController
+  ## START: show
+  def show
+    @project = Project.find(params[:id])
+  end
+  ## END: show
 
-    #START: show
-    def show
-      @project = Project.find(params[:id])
-    end
-    #END: show
+  def new
+    @project = Project.new
+  end
 
-    def new
-      @project = Project.new
-    end
-  
-    def index
-      @projects = Project.all
-    end
-  
-    def create
-      @workflow = CreatesProject.new(
-        name: params[:project][:name],
-        task_string: params[:project][:tasks])
-      @workflow.create
-      if @workflow.success?
-        redirect_to projects_path
-      else
-        @project = @workflow.project
-        render :new
-      end
-    end
+  def index
+    @projects = Project.all
+  end
 
+  ## START: create
+  def create
+    @workflow = CreatesProject.new(
+      name: params[:project][:name],
+      task_string: params[:project][:tasks])
+    @workflow.create
+    if @workflow.success?
+      redirect_to projects_path
+    else
+      @project = @workflow.project
+      render :new
+    end
+  end
+  ## END: create
 end
-  
