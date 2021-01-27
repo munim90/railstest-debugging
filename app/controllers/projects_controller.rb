@@ -2,6 +2,10 @@ class ProjectsController < ApplicationController
   ## START: show
   def show
     @project = Project.find(params[:id])
+    respond_to do |format|
+      format.html {}
+      format.js { render json: @project.as_json(root: true, include: :tasks) }
+    end
   end
   ## END: show
 
@@ -13,7 +17,6 @@ class ProjectsController < ApplicationController
     @projects = Project.all
   end
 
-  ## START: create
   def create
     @workflow = CreatesProject.new(
       name: params[:project][:name],
@@ -26,5 +29,4 @@ class ProjectsController < ApplicationController
       render :new
     end
   end
-  ## END: create
 end
