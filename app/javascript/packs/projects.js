@@ -1,55 +1,45 @@
+import {ProjectLoader} from "../../../app/javascript/packs/project_loader.js"
+import {Task} from "../../../app/javascript/packs/task.js"
+import {ProjectTable} from "../../../app/javascript/packs/project_table.js"
+
+
 export class Project {
-  constructor() {
+  constructor(id) {
     this.tasks = []
+    this.id = id
+    this.loader = new ProjectLoader(this)
   }
+
+  load() {
+    return this.loader.load().then(data => this.loadFromData(data))
+  }
+
+  loadFromData(data) {
+    this.name = data.project.name
+    data.project.tasks.forEach(taskData => {
+      this.appendTask(new Task(
+        taskData.title, taskData.size, taskData.project_order))
+    })
+    return this
+  }
+
   appendTask(task) {
     this.tasks.push(task)
     task.project = this
-    task.index = this.tasks.length - 1
   }
+
   firstTask() {
     return this.tasks[0]
   }
+
   lastTask() {
     return this.tasks[this.tasks.length - 1]
   }
+
   swapTasksAt(index1, index2) {
     const temp = this.tasks[index1]
     this.tasks[index1] = this.tasks[index2]
     this.tasks[index2] = temp
-  }
-}
-
-export class Task {
-    constructor(name, size) {
-    this.name = name
-    this.size = size
-    this.project = null
-    this.index = null
-  }
-  isFirst() {
-    if (this.project) {
-    return this.project.firstTask() === this
-    }
-    return false
-  }
-  isLast() {
-    if (this.project) {
-    return this.project.lastTask() === this
-    }
-    return false
-  }
-  moveUp() {
-    if (this.isFirst()) {
-    return
-  }
-
-  this.project.swapTasksAt(this.index - 1, this.index)
-  }
-  moveDown() {
-    if (this.isLast()) {
-    return
-  }
-  this.project.swapTasksAt(this.index, this.index + 1)
+    new ProjectTable(this, ".task-table").insert()
   }
 }
