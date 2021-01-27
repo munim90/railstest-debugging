@@ -1,3 +1,4 @@
+//##START:P1
 import {TaskUpdater} from "../../../app/javascript/packs/task_updater.js"
 
 export class Task {
@@ -27,8 +28,8 @@ export class Task {
     return false
   }
 
-  //#
-  //#
+  //##END:P1
+  //##START:P2
   moveUp() {
     if (this.isFirst()) {
       return
@@ -45,3 +46,4 @@ export class Task {
     this.updater.update("down")
   }
 }
+//##END:P2
