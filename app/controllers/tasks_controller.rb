@@ -1,5 +1,16 @@
 class TasksController < ApplicationController
   before_action :load_task, only: %i[up down]
+  
+  #START: new update
+  def update
+    @task = Task.find(params[:id])
+    if @task.update(task_params)
+      redirect_to @task, notice: "project was successfully updated"
+    else
+      render action :edit
+    end
+  end
+  #END: new update
 
   def create
     @project = Project.find(params[:task][:project_id])
