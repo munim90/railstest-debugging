@@ -17,7 +17,7 @@ RSpec.describe "task requests" do
 
     it "sends email when task is completed" do
         patch(task_path(id: task.id), params: {task: {completed: true}})
-        expect(ActionMailer::Base.deliveries.size).to eq(0)
+        expect(ActionMailer::Base.deliveries.size).to eq(1)
         email = ActionMailer::Base.deliveries.first
         expect(email.subject).to eq("A task has been completed")
         expect(email.to).to eq(["monitor@tasks.com"])
