@@ -24,4 +24,12 @@ class ProjectWithStubsTest < ActiveSupport::TestCase
         assert_equal("Project Greenlight", project.name)
     end
     #END: third_stub
+
+    #START: fourth_stub
+    test "let's mock an object" do
+        mock_project = Project.new(name: "Project Greenlight")
+        mock_project.expects(:name).returns("Fred")
+        assert_equal("Fred", mock_project.name)
+    end
+    #END: fourth_stub
 end
