@@ -43,6 +43,8 @@ group :development, :test do
   gem 'webdrivers'
   gem 'cucumber-rails', require: false
   gem "foreman"
+  gem "mocha"
+  gem 'rack-test'
 end
 
 group :development do
@@ -51,6 +53,7 @@ group :development do
   gem "spring-commands-rspec"
   gem "spring-watcher-listen"
   gem "web-console"
+  gem "mocha", require: false
 
   
 end
