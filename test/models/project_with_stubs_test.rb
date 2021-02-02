@@ -32,4 +32,14 @@ class ProjectWithStubsTest < ActiveSupport::TestCase
         assert_equal("Fred", mock_project.name)
     end
     #END: fourth_stub
+
+    #START: fifth_stub
+    test "stub with multiple returns" do
+        stubby = Project.new
+        stubby.stubs(:user_count).returns(1, 2)
+        assert_equal(1, stubby.user_count)
+        assert_equal(2, stubby.user_count)
+        assert_equal(2, stubby.user_count)
+    end
+    #END: fifth_stub
 end
