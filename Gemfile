@@ -27,6 +27,8 @@ gem 'jbuilder', '~> 2.7'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
+gem "devise"
+gem "capistrano-rails", group: :development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -43,7 +45,7 @@ group :development, :test do
   gem 'webdrivers'
   gem 'cucumber-rails', require: false
   gem "foreman"
-  gem "mocha", require: false
+  gem "mocha"
   gem 'rack-test'
 end
 
