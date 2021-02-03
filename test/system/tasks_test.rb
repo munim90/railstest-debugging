@@ -1,7 +1,7 @@
 require "application_system_test_case"
 
 class TasksTest < ApplicationSystemTestCase
-    test "reordering a task" do
+    test "can re-order a task" do
         project = FactoryBot.create(:project, name: "Project Bluebook")
         task_1 = FactoryBot.create(
             :task, project: project, title: "Search Sky", size: 1, project_order: 1)
