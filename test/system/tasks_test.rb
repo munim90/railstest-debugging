@@ -21,7 +21,7 @@ class TasksTest < ApplicationSystemTestCase
         visit(project_path(project))
         find("#task_2")
         within("#task_2") do
-            assert_selector(".name", text: "Take Notes")
+            assert_selector(".name", text: "Use Telescope")
         end
     end
 end
