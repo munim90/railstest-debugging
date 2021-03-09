@@ -20,8 +20,7 @@ RSpec.describe "adding a new task" do
     end
     expect(page).to have_selector(
       "tbody:nth-child(2) .name", text: "Take Notes")
-      #END:P1
-      #START:P2
+
     visit(project_path(project))
     find("#task_2")
     within("#task_2") do
@@ -30,4 +29,3 @@ RSpec.describe "adding a new task" do
   end
 
 end
-#END:P2

@@ -14,7 +14,6 @@ RSpec.describe "adding a project", type: :system do
       "#project_#{@project.id} .total-size", text: "8")
   end
 
-  ## START: failure_test
   it "does not allow a user to create a project without a name" do
     visit new_project_path
     fill_in "Name", with: ""
@@ -22,9 +21,7 @@ RSpec.describe "adding a project", type: :system do
     click_on("Create Project")
     expect(page).to have_selector(".new_project")
   end
-  ## END: failure_test
 
-  ## START: mock_failure_test
   it "behaves correctly in the face of a surprising database failure" do
     workflow = instance_spy(CreatesProject,
       success?: false, project: Project.new)
@@ -38,5 +35,4 @@ RSpec.describe "adding a project", type: :system do
     click_on("Create Project")
     expect(page).to have_selector(".new_project")
   end
-  ## END: mock_failure_test
 end
