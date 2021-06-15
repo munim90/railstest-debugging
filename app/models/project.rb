@@ -39,8 +39,9 @@ class Project < ApplicationRecord
   end
 
   def on_schedule?
-    return false if projected_days_remaining.nan?
-    (Time.zone.today + projected_days_remaining) <= due_date
+    return false if projected_days_remaining.infinite?    
+    return false if projected_days_remaining.nan?    
+    (Time.zone.today + projected_days_remaining) <= due_date  
   end
 
   # #START: next_task_order
