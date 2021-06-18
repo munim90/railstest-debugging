@@ -2,6 +2,10 @@
 require "rails_helper"
 
 RSpec.describe "adding a new task" do
+  before(:example) do
+    sign_in(create(:user))
+  end
+
   let!(:project) { create(:project, name: "Project Bluebook") }
   let!(:task_1) { create(
     :task, project: project, title: "Search Sky", size: 1, project_order: 1) }

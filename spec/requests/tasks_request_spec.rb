@@ -3,8 +3,10 @@ require "rails_helper"
 RSpec.describe "task requests" do
 
     before(:example) do
+        sign_in(create(:user))
         ActionMailer::Base.deliveries.clear
     end
+
 
     let(:project) { create(:project, name: "Project Bluebook") }
     let(:task) {  create(:task, project: project, title: "Learn how to test mailers", size: 3) }
