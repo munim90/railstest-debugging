@@ -2,6 +2,10 @@ class ProjectsController < ApplicationController
   ## START: show
   def show
     @project = Project.find(params[:id])
+    unless current_user.can_view?(@project)
+      redirect_to new_user_session_path
+      return
+    end
     respond_to do |format|
       format.html {}
       format.js { render json: @project.as_json(root: true, include: :tasks) }

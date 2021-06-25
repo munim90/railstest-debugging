@@ -2,8 +2,20 @@
 require "rails_helper"
 
 RSpec.describe "adding a new task" do
+
+  let(:project) { create(:project, name: "Project Bluebook") }
+  let!(:task_1) { create(
+  :task, project: project, title: "Search Sky", size: 1, project_order: 1) }
+  let!(:task_2) { create(
+  :task, project: project, title: "Use Telescope", size: 1,
+  project_order: 2) }
+  let!(:task_3) { create(
+  :task, project: project, title: "Take Notes", size: 1, project_order: 3) }
+  let(:user) { create(:user) }
+
   before(:example) do
-    sign_in(create(:user))
+      Role.create(user: user, project: project)
+      sign_in(user)
   end
 
   let!(:project) { create(:project, name: "Project Bluebook") }

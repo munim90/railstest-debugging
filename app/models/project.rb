@@ -1,6 +1,11 @@
 class Project < ApplicationRecord
   include Sizeable
 
+  #START: Adding associations
+  has_many :roles, dependent: :destroy
+  has_many :projects, through: :roles
+  #END: Adding associations
+
   has_many :tasks, -> { order "project_order ASC" },
     dependent: :destroy, inverse_of: :project
 
