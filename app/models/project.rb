@@ -3,13 +3,17 @@ class Project < ApplicationRecord
 
   #START: Adding associations
   has_many :roles, dependent: :destroy
-  has_many :projects, through: :roles
+  has_many :users, through: :roles
   #END: Adding associations
 
   has_many :tasks, -> { order "project_order ASC" },
     dependent: :destroy, inverse_of: :project
 
   validates :name, presence: true
+
+  def self.all_public
+    where(public: true)
+  end
 
   def self.velocity_length_in_days
     21

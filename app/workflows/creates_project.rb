@@ -1,11 +1,12 @@
 class CreatesProject
-  attr_accessor :name, :project, :task_string
+  
+  attr_accessor :name, :project, :task_string, :users
 
-  ## START: success
-  def initialize(name: "", task_string: "")
+  def initialize(name: "", task_string: "", users: [])
     @name = name
     @task_string = task_string || ""
-    @success = false
+    @success = true
+    @users = users
   end
 
   def success?
@@ -15,6 +16,7 @@ class CreatesProject
   def build
     self.project = Project.new(name: name)
     project.tasks = convert_string_to_tasks
+    project.users = users
     project
   end
 
@@ -23,12 +25,12 @@ class CreatesProject
     result = project.save
     @success = result
   end
-  ## END: success
 
   def convert_string_to_tasks
-    task_string.split("\n").map do |one_task|
+    task_string.split("\n").map.with_index do |one_task, index|
       title, size_string = one_task.split(":")
-      Task.new(title: title, size: size_as_integer(size_string))
+      Task.new(title: title,
+               size: size_as_integer(size_string), project_order: index + 1)
     end
   end
 

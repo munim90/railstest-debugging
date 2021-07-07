@@ -6,10 +6,15 @@ class User < ApplicationRecord
 
   has_many :roles, dependent: :destroy
   has_many :projects, through: :roles
+  has_many :tasks, dependent: :nullify
 
   def can_view?(project)
-  return true if admin || project.public?
-  project.in?(projects)
-end
+    project.in?(visible_projects)
+  end
+
+  def visible_projects
+    return Project.all if admin?
+    Project.where(id: project_ids).or(Project.all_public)
+  end
 
 end
