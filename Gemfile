@@ -22,6 +22,8 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'mimemagic', '~> 0.3.10'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -51,6 +53,8 @@ group :development, :test do
   gem "foreman"
   gem "mocha"
   gem 'rack-test'
+  gem "pry-byebug"
+  gem "pry-stack_explorer"
 end
 
 group :development do

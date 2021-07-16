@@ -1,0 +1,180 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.twitter.com/oauth2/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      User-Agent:
+      - TwitterRubyGem/7.0.0
+      Accept:
+      - "*/*"
+      Authorization:
+      - Basic RnVpQ09iOWtucDVVU3A2U2kxcmxBc2NIYTpXWWNaWmRyUEJ0ZU80VUNianFGRGZtOFNha21lVklMZ08zdEo3U0ZBRHdxTGpuUE5zSg==
+      Connection:
+      - close
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.twitter.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=utf-8
+      Content-Length:
+      - '155'
+      Connection:
+      - close
+      Ml:
+      - A
+      Date:
+      - Thu, 15 Jul 2021 08:12:03 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - tsa_o
+      Status:
+      - 200 OK
+      Expires:
+      - Tue, 31 Mar 1981 05:00:00 GMT
+      Set-Cookie:
+      - guest_id=v1%3A162633672358862535; Max-Age=63072000; Expires=Sat, 15 Jul 2023
+        08:12:03 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
+      - personalization_id="v1_+IG9GrdZoU+VIQSAmBys9g=="; Max-Age=63072000; Expires=Sat,
+        15 Jul 2023 08:12:03 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
+      Cache-Control:
+      - no-cache, no-store, must-revalidate, pre-check=0, post-check=0
+      Last-Modified:
+      - Thu, 15 Jul 2021 08:12:03 GMT
+      X-Transaction:
+      - 23a7e17d8a463569
+      X-Frame-Options:
+      - DENY
+      X-Ua-Compatible:
+      - IE=edge,chrome=1
+      X-Xss-Protection:
+      - '0'
+      Content-Disposition:
+      - attachment; filename=json.json
+      X-Content-Type-Options:
+      - nosniff
+      X-Twitter-Response-Tags:
+      - BouncerCompliant
+      Strict-Transport-Security:
+      - max-age=631138519
+      X-Connection-Hash:
+      - fe26035a69cffd5cde321e08db769280e08eef28cad467b0e3a2acfbd71e3343
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 12568db103eebfea9d7f7cb5f0a8e524.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - FJR50-C1
+      X-Amz-Cf-Id:
+      - YBtIdnJCm_nLxF54-2bkV70DiJgSIlfJk-mOxcUz4H046UKv5-8Llg==
+    body:
+      encoding: UTF-8
+      string: '{"token_type":"bearer","access_token":"AAAAAAAAAAAAAAAAAAAAALVzYQAAAAAAIItU1SgTX8I%2B7Q3Cl3mqvuZiAAc%3D0AtbuGPnZgRlOHbTIk3JudxSGqXxgfkwpMG367Rtyw6GGLwO6N"}'
+  recorded_at: Thu, 15 Jul 2021 08:12:03 GMT
+- request:
+    method: get
+    uri: https://api.twitter.com/1.1/users/show.json?screen_name=noelrap
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - TwitterRubyGem/7.0.0
+      Authorization:
+      - Bearer AAAAAAAAAAAAAAAAAAAAALVzYQAAAAAAIItU1SgTX8I%2B7Q3Cl3mqvuZiAAc%3D0AtbuGPnZgRlOHbTIk3JudxSGqXxgfkwpMG367Rtyw6GGLwO6N
+      Connection:
+      - close
+      Host:
+      - api.twitter.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=utf-8
+      Content-Length:
+      - '3921'
+      Connection:
+      - close
+      Date:
+      - Thu, 15 Jul 2021 08:12:04 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - tsa_o
+      Status:
+      - 200 OK
+      Expires:
+      - Tue, 31 Mar 1981 05:00:00 GMT
+      Set-Cookie:
+      - guest_id=v1%3A162633672418017865; Max-Age=63072000; Expires=Sat, 15 Jul 2023
+        08:12:04 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
+      - personalization_id="v1_1XfkcFGg0H0AoFd8jM+Umg=="; Max-Age=63072000; Expires=Sat,
+        15 Jul 2023 08:12:04 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
+      Cache-Control:
+      - no-cache, no-store, must-revalidate, pre-check=0, post-check=0
+      Last-Modified:
+      - Thu, 15 Jul 2021 08:12:04 GMT
+      X-Transaction:
+      - 7fb9a5b4d073dbbb
+      X-Access-Level:
+      - read
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Rate-Limit-Limit:
+      - '300'
+      X-Rate-Limit-Reset:
+      - '1626337624'
+      Content-Disposition:
+      - attachment; filename=json.json
+      X-Content-Type-Options:
+      - nosniff
+      X-Rate-Limit-Remaining:
+      - '299'
+      X-Twitter-Response-Tags:
+      - BouncerCompliant
+      Strict-Transport-Security:
+      - max-age=631138519
+      X-Connection-Hash:
+      - 799f7757ff51ef8e531b775e21ef064f915f7a876f5d2617d815db1078a118ba
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 fea27bc7c6b866014db45f720775ef94.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - FJR50-C1
+      X-Amz-Cf-Id:
+      - UJ4vOSlszVRvIuWFMxWxvU403qD6ie2lPMSc2jaq_6G8BucC9xfYiw==
+    body:
+      encoding: UTF-8
+      string: '{"id":1515231,"id_str":"1515231","name":"Noel Rappin","screen_name":"noelrap","location":"Chicago
+        IL","profile_location":null,"description":"Noel Rappin is a Staff Software
+        Engineer at Root Insurance. He is the author of Modern Front End Development
+        for Rails and Rails 5 Test Prescriptions. (He\/Him)","url":"https:\/\/t.co\/2Mt0aaEHRd","entities":{"url":{"urls":[{"url":"https:\/\/t.co\/2Mt0aaEHRd","expanded_url":"http:\/\/www.noelrappin.com","display_url":"noelrappin.com","indices":[0,23]}]},"description":{"urls":[]}},"protected":false,"followers_count":3481,"friends_count":897,"listed_count":242,"created_at":"Mon
+        Mar 19 15:10:21 +0000 2007","favourites_count":1286,"utc_offset":null,"time_zone":null,"geo_enabled":false,"verified":false,"statuses_count":16940,"lang":null,"status":{"created_at":"Thu
+        Jul 15 05:19:56 +0000 2021","id":1415541618619322369,"id_str":"1415541618619322369","text":"RT
+        @getajobmike: Hey Ruby peeps, have you done anything interesting or cool with
+        ruby? The @rubyconf CFP is closing soon, we want to hear a\u2026","truncated":false,"entities":{"hashtags":[],"symbols":[],"user_mentions":[{"screen_name":"getajobmike","name":"Mike
+        Perham","id":1212070402115043329,"id_str":"1212070402115043329","indices":[3,15]},{"screen_name":"rubyconf","name":"RubyConf","id":16222737,"id_str":"16222737","indices":[91,100]}],"urls":[]},"source":"\u003ca
+        href=\"https:\/\/twitterrific.com\/ios\" rel=\"nofollow\"\u003eTwitterrific
+        for iOS\u003c\/a\u003e","in_reply_to_status_id":null,"in_reply_to_status_id_str":null,"in_reply_to_user_id":null,"in_reply_to_user_id_str":null,"in_reply_to_screen_name":null,"geo":null,"coordinates":null,"place":null,"contributors":null,"retweeted_status":{"created_at":"Wed
+        Jul 14 21:55:44 +0000 2021","id":1415429833949995013,"id_str":"1415429833949995013","text":"Hey
+        Ruby peeps, have you done anything interesting or cool with ruby? The @rubyconf
+        CFP is closing soon, we want to\u2026 https:\/\/t.co\/PHaq1MeL4o","truncated":true,"entities":{"hashtags":[],"symbols":[],"user_mentions":[{"screen_name":"rubyconf","name":"RubyConf","id":16222737,"id_str":"16222737","indices":[74,83]}],"urls":[{"url":"https:\/\/t.co\/PHaq1MeL4o","expanded_url":"https:\/\/twitter.com\/i\/web\/status\/1415429833949995013","display_url":"twitter.com\/i\/web\/status\/1\u2026","indices":[117,140]}]},"source":"\u003ca
+        href=\"http:\/\/tapbots.com\/tweetbot\" rel=\"nofollow\"\u003eTweetbot for
+        i\u039fS\u003c\/a\u003e","in_reply_to_status_id":null,"in_reply_to_status_id_str":null,"in_reply_to_user_id":null,"in_reply_to_user_id_str":null,"in_reply_to_screen_name":null,"geo":null,"coordinates":null,"place":null,"contributors":null,"is_quote_status":false,"retweet_count":10,"favorite_count":29,"favorited":false,"retweeted":false,"possibly_sensitive":false,"lang":"en"},"is_quote_status":false,"retweet_count":10,"favorite_count":0,"favorited":false,"retweeted":false,"lang":"en"},"contributors_enabled":false,"is_translator":false,"is_translation_enabled":false,"profile_background_color":"9AE4E8","profile_background_image_url":"http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png","profile_background_image_url_https":"https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png","profile_background_tile":false,"profile_image_url":"http:\/\/pbs.twimg.com\/profile_images\/1371552537153781764\/77cdD1px_normal.jpg","profile_image_url_https":"https:\/\/pbs.twimg.com\/profile_images\/1371552537153781764\/77cdD1px_normal.jpg","profile_banner_url":"https:\/\/pbs.twimg.com\/profile_banners\/1515231\/1520002482","profile_link_color":"0000FF","profile_sidebar_border_color":"87BC44","profile_sidebar_fill_color":"E0FF92","profile_text_color":"000000","profile_use_background_image":true,"has_extended_profile":true,"default_profile":false,"default_profile_image":false,"following":null,"follow_request_sent":null,"notifications":null,"translator_type":"none","withheld_in_countries":[]}'
+  recorded_at: Thu, 15 Jul 2021 08:12:04 GMT
+recorded_with: VCR 6.0.0
