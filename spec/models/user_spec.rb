@@ -31,13 +31,13 @@ describe User do
 
     it "a user can see public projects" do
       user.projects << project_1
-      project_2.update_attributes(public: true)
+      project_2.update(public: true)
       expect(user).to be_able_to_see(project_1, project_2)
     end
 
     it "no dupes in project list" do
       user.projects << project_1
-      project_1.update_attributes(public: true)
+      project_1.update(public: true)
       expect(user).to be_able_to_see(project_1)
     end
 
