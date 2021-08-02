@@ -9,6 +9,7 @@ RSpec.describe CreatesProject do
     let(:task_string) { "" }
     it "creates a project given a name" do
       creator.build
+      binding.pry
       expect(creator.project.name).to eq("Project Runway")
     end
   end
