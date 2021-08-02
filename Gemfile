@@ -33,11 +33,7 @@ gem "devise"
 gem "capistrano-rails", group: :development
 gem "minitest"
 gem 'twitter'
-gem 'vcr', group: :test
-gem 'webmock', group: :test
 
-gem 'minitest-sprint'
-gem 'minitest-bisect'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
